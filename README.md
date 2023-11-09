@@ -3,7 +3,7 @@
 1. Clone the git repo — git clone https://github.com/codio/atests-simple.git 
 2. Install java [jdk](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 3. Install [maven](http://maven.apache.org/download.cgi)
-4. In src/test/resources/config.properties file set teacher (teacher should be already added to organization) and students (this example needs 4 test students, no matter already added to org, or new) credentials, like:
+4. Create src/test/resources/config.properties file and set teacher (teacher should be already added to organization) and students (this example needs 4 test students, no matter already added to org, or new) credentials in it, like:
 ```
 teacher.login = loginhere
 teacher.email = email@adress.here
@@ -14,8 +14,8 @@ teacher.password = passwordhere
 student1.login = student1loginhere
 ... and so on
 ```
-5. First run src/test/java/helpers/COneCreateCourseHelper (`mvn clean -Dtest=COneCreateCourseHelper test`). It will create test course
-6. To run all tests go to project's root and on command line run `mvn clean test` or import project as maven module to IDE and run as junit tests
+5. Run src/test/java/helpers/COneCreateCourseHelper (in console `mvn clean -Dtest=COneCreateCourseHelper test`). It will create test course
+6. To run all tests go to project's root and on command line run `mvn clean test` or import project as maven module to IDE and run as junit tests. See **Run tests** for more options
 7. To see results of tests in Allure go to project's root and on command line run `mvn allure:serve`
 
 ## Run tests
@@ -37,6 +37,8 @@ To run tests from command line go to project's root and use commands in terminal
 More info about running tests by maven [there](https://maven.apache.org/surefire-archives/surefire-2.22.1/maven-surefire-plugin/examples/single-test.html)
 
 ## Code style checks
+
+After code editing use auto-formatting and style checks
 
 ### Auto-formatting
 
