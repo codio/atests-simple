@@ -1,0 +1,7 @@
+.idea/
+target/
+testcodio.iml
+.allure/
+build/
+test-output/
+src/test/resources/config.properties
