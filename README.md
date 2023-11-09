@@ -1,6 +1,6 @@
 
 ## Quick start
-1. Clone the git repo — git clone https://github.com/codio/atests-simplegit .git 
+1. Clone the git repo — git clone https://github.com/codio/atests-simple.git 
 2. Install java [jdk](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 3. Install [maven](http://maven.apache.org/download.cgi)
 4. In src/test/resources/config.properties file set teacher (teacher should be already added to organization) and students (this example needs 4 test students, no matter already added to org, or new) credentials, like:
@@ -20,7 +20,7 @@ student1.login = student1loginhere
 
 ## Run tests
 It's possible to specify properties (such as environment, runType etc) in src/test/resources/config.properties file.
-By default tests run locally on prod in Chrome browser
+By default tests run on prod in Chrome browser
 Also some properties can be specified as arguments in command line
 To run tests from command line go to project's root and use commands in terminal:
 - `mvn clean test` - runs all tests with default config
