@@ -7,6 +7,7 @@ import java.time.Duration;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import io.qameta.allure.Step;
 
 import com.codio.helpers.AppConfig;
@@ -15,7 +16,7 @@ import com.codio.helpers.Driver;
 public class Button {
 
     private final SelenideElement button;
-    private final Condition disabledCondition =
+    private final WebElementCondition disabledCondition =
         Condition.or("disabled", Condition.attribute("disabled"), Condition.attributeMatching("class", ".*disabled.*"));
 
     public Button(SelenideElement button) {

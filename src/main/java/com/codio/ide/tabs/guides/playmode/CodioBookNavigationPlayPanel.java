@@ -14,7 +14,6 @@ import com.codio.helpers.AppConfig;
 public class CodioBookNavigationPlayPanel {
 
     private final SelenideElement navigation = $x("//div[@id='codio-book-navigation']");
-    private final SelenideElement bookTitle = navigation.$x(".//h3");
     private final JsTree jsTree = new JsTree(navigation.$x(".//div[contains(@class,'codio-book-tree jstree')]"));
 
     @Step("Get item by full name (opens parent folders)")
@@ -24,7 +23,7 @@ public class CodioBookNavigationPlayPanel {
 
     @Step("Wait Codio Book Navigation Play panel opened")
     public CodioBookNavigationPlayPanel waitOpened() {
-        bookTitle.shouldBe(Condition.visible, Duration.ofSeconds(AppConfig.timeOutSecLong));
+        navigation.shouldBe(Condition.visible, Duration.ofSeconds(AppConfig.timeOutSecLong));
         return this;
     }
 }
