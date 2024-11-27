@@ -27,18 +27,10 @@ public class Driver {
         return baseUrl;
     }
 
-    public static void close() {
+    public static void quit() {
         iframeStacks.remove(currentDriver().hashCode());
         if (WebDriverRunner.hasWebDriverStarted()) {
-            currentDriver().close();
-            try { // hack to avoid WebDriverException
-                currentDriver().quit();
-            } catch (WebDriverException e) {
-                logInfo("\n!!!!!!!\nRun hack for WebDriverException\nWebDriverException message: " + e.getMessage());
-                if (WebDriverRunner.hasWebDriverStarted()) {
-                    currentDriver().quit();
-                }
-            }
+            currentDriver().quit();
         }
     }
 

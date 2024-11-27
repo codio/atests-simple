@@ -15,9 +15,9 @@ public class AssignmentItem {
     private SelenideElement assignmentCompletedField;
 
     private void init() {
-        assignmentNameEl = item.$x(".//td[contains(@class,'name')]/button");
-        assignmentEnableField = item.$x(".//td[contains(@class,'enable')]/button");
-        assignmentPinIcon = item.$x(".//td[contains(@class,'pin')]/button");
+        assignmentNameEl = item.$x(".//td[contains(@class,'name')]//button");
+        assignmentEnableField = item.$x(".//td[contains(@class,'enable')]//button");
+        assignmentPinIcon = item.$x(".//td[contains(@class,'pin')]//button");
         assignmentCompletedField = item.$x(".//td[@title='Students Completed']//span");
     }
 
@@ -27,7 +27,7 @@ public class AssignmentItem {
     }
 
     AssignmentItem(SelenideElement module, String name) {
-        item = module.$x(".//td[contains(@class,'name')]/button[string()='" + name + "']/../..");
+        item = module.$x(".//td[contains(@class,'name')]//button[string()='" + name + "']/ancestor::tr");
         init();
     }
 

@@ -99,6 +99,18 @@ public class GuidesPlayMode {
         return result;
     }
 
+    @Step("Is Mark as Completed presented")
+    public boolean isMarkAsCompletedPresented() {
+        boolean result = false;
+        switchToGuidesPlayerIframe();
+        try {
+            result = markAsCompleteButton.isPresented();
+        } finally {
+            switchToDefaultContent();
+        }
+        return result;
+    }
+
     @Step("Mark as Completed")
     public NavigationMenu markAsCompleted() {
         MarkAsCompletedWarningDialog dialog = new MarkAsCompletedWarningDialog();

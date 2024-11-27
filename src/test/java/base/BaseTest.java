@@ -15,6 +15,6 @@ public class BaseTest {
 
     @AfterEach
     public void tearDown() {
-        Driver.close();
+        Driver.quit();
     }
 }

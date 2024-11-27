@@ -1,6 +1,9 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 import base.BaseOneByOneTest;
 import helpers.COneCreateCourseHelper;
@@ -9,7 +12,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import com.codio.common.users.Student;
 import com.codio.common.users.Teacher;
@@ -28,105 +32,77 @@ public class COneAssignmentParametrizedOneByOneTest extends BaseOneByOneTest {
     private static final String course = "Course For Auto Tests";
     private static final String moduleName = "Basic Skills";
     private static final String assignment1 = "Printing";
-    private final String assessment1option1 = "Missing \" \" around Hello world";
-    private final String assessment1option2 = "Capitalize print";
-    private final String assessment2option1 = "True";
-    private final String assessment2option2 = "False";
-    private final String assessment3option1 = "single-line";
-    private final String assessment3option2 = "multi-line";
-    private final String assessment4option1 = "Sends your output to the screen";
-    private final String assessment4option2 = "Sends your output to the printer";
-    private final String assessment5option1 = "print(\"Hi!\", end='')";
-    private final String assessment5option2 = "print(\"Hi!\")";
-    private final String answersAreCorrect = "Answers are correct";
-    private final String answersAreWrong = "Answers are wrong";
-    private final String correct3Wrong2 = "3 correct, 2 wrong";
-    private final String correct2 = "2 correct, 3 not started";
+    private static final String assessment1option1 = "Missing \" \" around Hello world";
+    private static final String assessment1option2 = "Capitalize print";
+    private static final String assessment2option1 = "True";
+    private static final String assessment2option2 = "False";
+    private static final String assessment3option1 = "single-line";
+    private static final String assessment3option2 = "multi-line";
+    private static final String assessment4option1 = "Sends your output to the screen";
+    private static final String assessment4option2 = "Sends your output to the printer";
+    private static final String assessment5option1 = "print(\"Hi!\", end='')";
+    private static final String assessment5option2 = "print(\"Hi!\")";
 
     /**
      * Here new cases to check can be added. After this case's keyName should be
      * added as argument in @ValueSource of 'answersCorrect' parametrised test
      */
-    private final HashMap<String, Case> cases = new HashMap<>() {
-        {
-            put(
-                answersAreCorrect,
-                new Case(
-                    Student.getStudent("student1"),
-                    new String[] {assessment1option1},
-                    new String[] {assessment2option1},
-                    new String[] {assessment3option1, assessment3option2},
-                    new String[] {assessment4option1},
-                    new String[] {assessment5option1},
-                    100,
-                    5
-                )
-            );
-            put(
-                answersAreWrong,
-                new Case(
-                    Student.getStudent("student2"),
-                    new String[] {assessment1option2},
-                    new String[] {assessment2option2},
-                    new String[] {assessment3option2, assessment3option1},
-                    new String[] {assessment4option2},
-                    new String[] {assessment5option2},
-                    0,
-                    5
-                )
-            );
-            put(
-                correct3Wrong2,
-                new Case(
-                    Student.getStudent("student3"),
-                    new String[] {assessment1option1},
-                    new String[] {assessment2option2},
-                    new String[] {assessment3option1, assessment3option2},
-                    new String[] {assessment4option2},
-                    new String[] {assessment5option1},
-                    60,
-                    5
-                )
-            );
-            put(
-                correct2,
-                new Case(
-                    Student.getStudent("student4"),
-                    new String[] {assessment1option1},
-                    new String[] {assessment2option1},
-                    new String[] {},
-                    new String[] {},
-                    new String[] {},
-                    40,
-                    2
-                )
-            );
-        }
-    };
 
-    private static class Case {
-        final Student student;
-        final String[] answer1;
-        final String[] answer2;
-        final String[] answer3;
-        final String[] answer4;
-        final String[] answer5;
-        final int grade;
-        final int answered;
-
-        public Case(
-            Student student, String[] answer1, String[] answer2, String[] answer3, String[] answer4, String[] answer5,
-            int grade, int answered
-        ) {
-            this.student = student;
-            this.answer1 = answer1;
-            this.answer2 = answer2;
-            this.answer3 = answer3;
-            this.answer4 = answer4;
-            this.answer5 = answer5;
-            this.grade = grade;
-            this.answered = answered;
-        }
+    static Stream<Arguments> caseProvider() {
+        List<Arguments> list = new ArrayList<>();
+        list.add(
+            arguments(
+                "Answers are correct",
+                Student.getStudent("student1"),
+                new String[] {assessment1option1},
+                new String[] {assessment2option1},
+                new String[] {assessment3option1, assessment3option2},
+                new String[] {assessment4option1},
+                new String[] {assessment5option1},
+                100,
+                5
+            )
+        );
+        list.add(
+            arguments(
+                "Answers are wrong",
+                Student.getStudent("student2"),
+                new String[] {assessment1option2},
+                new String[] {assessment2option2},
+                new String[] {assessment3option2, assessment3option1},
+                new String[] {assessment4option2},
+                new String[] {assessment5option2},
+                0,
+                5
+            )
+        );
+        list.add(
+            arguments(
+                "3 correct, 2 wrong",
+                Student.getStudent("student3"),
+                new String[] {assessment1option1},
+                new String[] {assessment2option2},
+                new String[] {assessment3option1, assessment3option2},
+                new String[] {assessment4option2},
+                new String[] {assessment5option1},
+                60,
+                5
+            )
+        );
+        list.add(
+            arguments(
+                "2 correct, 3 not started",
+                Student.getStudent("student4"),
+                new String[] {assessment1option1},
+                new String[] {assessment2option1},
+                new String[] {},
+                new String[] {},
+                new String[] {},
+                40,
+                2
+            )
+        );
+        return list.stream();
     }
 
     @BeforeAll
@@ -141,16 +117,11 @@ public class COneAssignmentParametrizedOneByOneTest extends BaseOneByOneTest {
     }
 
     @ParameterizedTest(name = "Check assignment completion results. {0}")
-    @ValueSource(strings = {answersAreCorrect, answersAreWrong, correct3Wrong2, correct2})
-    public void answersCorrect(String caseName) {
-        Student student = cases.get(caseName).student;
-        String[] answer1 = cases.get(caseName).answer1;
-        String[] answer2 = cases.get(caseName).answer2;
-        String[] answer3 = cases.get(caseName).answer3;
-        String[] answer4 = cases.get(caseName).answer4;
-        String[] answer5 = cases.get(caseName).answer5;
-        int grade = cases.get(caseName).grade;
-        int answered = cases.get(caseName).answered;
+    @MethodSource("caseProvider")
+    public void checkAssignmentExecutionResults(
+        String caseName, Student student, String[] answer1, String[] answer2, String[] answer3, String[] answer4,
+        String[] answer5, int grade, int answered
+    ) {
 
         Helper.reLogin(student)
             .clickCoursesByStudent()
@@ -193,7 +164,9 @@ public class COneAssignmentParametrizedOneByOneTest extends BaseOneByOneTest {
             );
         }
 
-        guides.openPage("Fundamentals/Formative Assessment - Printing/Formative Assessment 2");
+        if (!guides.isMarkAsCompletedPresented()) {
+            guides.openPage("Fundamentals/Formative Assessment - Printing/Formative Assessment 2");
+        }
         guides.markAsCompleted();
 
         Helper.reLogin(teacherA);
@@ -204,8 +177,8 @@ public class COneAssignmentParametrizedOneByOneTest extends BaseOneByOneTest {
             .student(student.getFullName());
 
         Assertions.assertAll(
-            () -> assertEquals(grade, studentItem.getGrade(), "Is Grade correct"),
-            () -> assertEquals(answered, studentItem.getAnswered(), "Is Answered correct")
+            () -> assertEquals(grade, studentItem.getGrade(), caseName + ": Is Grade correct"),
+            () -> assertEquals(answered, studentItem.getAnswered(), caseName + ": Is Answered correct")
         );
     }
 }

@@ -15,6 +15,6 @@ public class BaseOneByOneTest {
 
     @AfterAll
     static void tearDown() {
-        Driver.close();
+        Driver.quit();
     }
 }

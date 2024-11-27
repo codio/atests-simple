@@ -18,7 +18,7 @@ public class BaseCodeConfirmDashboardDialog extends BaseDialog {
 
     @Step("Get confirmation code")
     private String getKey() {
-        return keyElement.getText().toLowerCase().replace("confirmation code: ", "");
+        return keyElement.getText().toLowerCase().split(": ")[1];
     }
 
     @Step("Enter confirmation code")

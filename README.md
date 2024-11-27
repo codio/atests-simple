@@ -1,7 +1,7 @@
 
 ## Quick start
 1. Clone the git repo — git clone https://github.com/codio/atests-simple.git 
-2. Install java [jdk](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+2. Install java [jdk](https://openjdk.org/)
 3. Install [maven](http://maven.apache.org/download.cgi)
 4. Create src/test/resources/config.properties file and set teacher (teacher should be already added to organization) and students (this example needs 4 test students, no matter already added to org, or new) credentials in it, like:
 ```
